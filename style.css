@@ -1,7 +1,6 @@
 .main {
     height: 90%;
     font-size: 32px;
-    overflow: hidden;
 }
 
 .emoji {
@@ -11,6 +10,18 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.answer {
+    height: 80%;
+}
+
+.answer ul {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    column-gap: 120px;
+    height: 100%;
 }
 
 .question { padding: 30px 0; }
