@@ -1,8 +1,8 @@
 module View exposing (..)
 
 import Array
-import Html exposing (Html, div, p, span, text)
-import Html.Attributes exposing (class, style)
+import Html exposing (Html, div, li, p, span, text, ul)
+import Html.Attributes exposing (class, hidden)
 import Html.Events exposing (onClick)
 import Model exposing (Model(..))
 import Msg exposing (Msg(..))
@@ -20,41 +20,76 @@ view model =
         Done _ ->
             emojiView "🥳" "Click to restart"
 
-        Success loadedModel ->
-            successView loadedModel
+        Question loadedModel ->
+            questionView False loadedModel
+
+        Answer loadedModel ->
+            questionView True loadedModel
 
 
 emojiView emoji footnote =
     inContainer
-        []
-        [ p [] [ text emoji ] ]
+        [ div [ class "emoji" ] [ text emoji ] ]
         [ p [] [ text footnote ] ]
 
 
-inContainer attrs questionChildren footnoteChildren =
-    let
-        containerAttrs =
-            attrs ++ [ class "container vh-100 user-select-none" ]
-    in
+inContainer mainChildren footnoteChildren =
     div
-        containerAttrs
+        [ class "container vh-100 user-select-none"
+        , onClick NextQuestion
+        ]
         [ div
-            [ class "question" ]
-            questionChildren
+            [ class "main" ]
+            mainChildren
         , div
             [ class "footnote text-muted" ]
             footnoteChildren
         ]
 
 
-successView model =
+questionView showAnswer model =
     let
-        currentQuestion =
+        question =
             Array.get model.index (Array.fromList model.questions)
-                |> Maybe.map (\q -> q.question)
-                |> Maybe.withDefault "-"
+                |> Maybe.withDefault { question = "", answer = Nothing, answers = Nothing }
+
+        pos =
+            String.fromInt (model.index + 1)
+                ++ " of "
+                ++ String.fromInt (List.length model.questions)
+
+        footnote =
+            if showAnswer then
+                "Click to go to the next question"
+
+            else
+                "Click to show answer"
     in
     inContainer
-        [ onClick NextQuestion ]
-        [ p [] [ text currentQuestion ] ]
-        [ p [] [ text "Click to advance" ] ]
+        [ div [ class "question" ]
+            [ text question.question ]
+        , div [ class "answer text-secondary", hidden (not showAnswer) ]
+            [ formatAnswer question ]
+        ]
+        [ p [] [ text pos ]
+        , p [] [ text footnote ]
+        ]
+
+
+formatAnswer question =
+    let
+        formatSingleAnswer =
+            \x -> li [] [ text x ]
+    in
+    case question.answer of
+        Just anAnswer ->
+            text anAnswer
+
+        Nothing ->
+            case question.answers of
+                Just answers ->
+                    ul []
+                        (List.map formatSingleAnswer answers)
+
+                Nothing ->
+                    text ""

@@ -8,7 +8,8 @@ import Question exposing (Question)
 type Model
     = Loading
     | Failure
-    | Success LoadedModel
+    | Question LoadedModel
+    | Answer LoadedModel
     | Done LoadedModel
 
 

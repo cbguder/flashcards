@@ -17,22 +17,34 @@ update msg model =
                     ( Failure, Cmd.none )
 
         ShuffledQuestions questions ->
-            ( Success { questions = questions, index = 0 }
+            ( Question { questions = questions, index = 0 }
             , Cmd.none
             )
 
         NextQuestion ->
             case model of
-                Success m ->
+                Question m ->
+                    ( Answer m, Cmd.none )
+
+                Answer m ->
                     ( nextQuestion m, Cmd.none )
+
+                Done m ->
+                    ( Loading, shuffleQuestions m.questions )
 
                 other ->
                     ( other, Cmd.none )
 
         PreviousQuestion ->
             case model of
-                Success m ->
+                Question m ->
                     ( previousQuestion m, Cmd.none )
+
+                Answer m ->
+                    ( Question m, Cmd.none )
+
+                Done m ->
+                    ( Question m, Cmd.none )
 
                 other ->
                     ( other, Cmd.none )
@@ -43,15 +55,15 @@ update msg model =
 
 previousQuestion m =
     if m.index > 0 then
-        Success { m | index = m.index - 1 }
+        Question { m | index = m.index - 1 }
 
     else
-        Success m
+        Question m
 
 
 nextQuestion m =
-    if List.length m.questions > m.index then
-        Success { m | index = m.index + 1 }
+    if List.length m.questions > m.index + 1 then
+        Question { m | index = m.index + 1 }
 
     else
         Done m

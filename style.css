@@ -1,15 +1,17 @@
-.question, .footnote {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.main {
+    height: 90%;
+    font-size: 32px;
+    overflow: hidden;
 }
 
-.question {
-    height: 90%;
+.emoji {
+    display: flex;
+    height: 100%;
     font-size: 64px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
-.footnote {
-    height: 10%;
-}
+.question { padding: 30px 0; }
+.footnote { height: 10%; }

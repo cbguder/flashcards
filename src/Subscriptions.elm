@@ -9,7 +9,13 @@ import Msg exposing (Msg(..))
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of
-        Success _ ->
+        Question _ ->
+            Events.onKeyDown keyDecoder
+
+        Answer _ ->
+            Events.onKeyDown keyDecoder
+
+        Done _ ->
             Events.onKeyDown keyDecoder
 
         _ ->

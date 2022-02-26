@@ -1,7 +1,7 @@
 module Commands exposing (..)
 
 import Http
-import Json.Decode exposing (field, list, map2, string)
+import Json.Decode exposing (field, list, map3, maybe, string)
 import Msg exposing (Msg(..))
 import Question exposing (Question)
 import Random
@@ -22,7 +22,8 @@ shuffleQuestions questions =
 
 questionsDecoder =
     list
-        (map2 Question
+        (map3 Question
             (field "question" string)
-            (field "answer" string)
+            (maybe (field "answer" string))
+            (maybe (field "answers" (list string)))
         )
