@@ -1,0 +1,15 @@
+.question, .footnote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question {
+    height: 90%;
+    font-size: 64px;
+    text-align: center;
+}
+
+.footnote {
+    height: 10%;
+}
