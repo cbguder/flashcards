@@ -50,13 +50,13 @@ inContainer mainChildren footnoteChildren =
 questionView showAnswer model =
     let
         question =
-            Array.get model.index (Array.fromList model.questions)
+            Array.get model.index model.questions
                 |> Maybe.withDefault { question = "", answer = Nothing, answers = Nothing }
 
         pos =
             String.fromInt (model.index + 1)
                 ++ " of "
-                ++ String.fromInt (List.length model.questions)
+                ++ String.fromInt (Array.length model.questions)
 
         footnote =
             if showAnswer then

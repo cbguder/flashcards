@@ -1,5 +1,6 @@
 module Update exposing (..)
 
+import Array
 import Commands exposing (shuffleQuestions)
 import Model exposing (Model(..))
 import Msg exposing (Msg(..))
@@ -62,7 +63,7 @@ previousQuestion m =
 
 
 nextQuestion m =
-    if List.length m.questions > m.index + 1 then
+    if Array.length m.questions > m.index + 1 then
         Question { m | index = m.index + 1 }
 
     else

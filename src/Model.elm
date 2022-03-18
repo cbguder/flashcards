@@ -1,5 +1,6 @@
 module Model exposing (..)
 
+import Array exposing (Array)
 import Commands exposing (loadQuestions)
 import Msg exposing (Msg(..))
 import Question exposing (Question)
@@ -14,7 +15,7 @@ type Model
 
 
 type alias LoadedModel =
-    { questions : List Question
+    { questions : Array Question
     , index : Int
     }
 

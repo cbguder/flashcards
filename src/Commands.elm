@@ -1,11 +1,11 @@
 module Commands exposing (..)
 
 import Http
-import Json.Decode exposing (field, list, map3, maybe, string)
+import Json.Decode exposing (array, field, list, map3, maybe, string)
 import Msg exposing (Msg(..))
 import Question exposing (Question)
 import Random
-import Random.List
+import Random.Array
 
 
 loadQuestions =
@@ -17,11 +17,11 @@ loadQuestions =
 
 shuffleQuestions questions =
     Random.generate ShuffledQuestions
-        (Random.List.shuffle questions)
+        (Random.Array.shuffle questions)
 
 
 questionsDecoder =
-    list
+    array
         (map3 Question
             (field "question" string)
             (maybe (field "answer" string))
