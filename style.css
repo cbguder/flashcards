@@ -1,0 +1,28 @@
+.main {
+    height: 90%;
+    font-size: 32px;
+}
+
+.emoji {
+    display: flex;
+    height: 100%;
+    font-size: 64px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.answer {
+    height: 80%;
+}
+
+.answer ul {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    column-gap: 120px;
+    height: 100%;
+}
+
+.question { padding: 30px 0; }
+.footnote { height: 10%; }
