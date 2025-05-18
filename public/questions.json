@@ -121,7 +121,7 @@
   {
     "question": "Who is one of your state's U.S. Senators now?",
     "answers": [
-      "Dianne Feinstein",
+      "Adam Schiff",
       "Alex Padilla"
     ]
   },
@@ -135,7 +135,7 @@
   },
   {
     "question": "Name your U.S. Representative.",
-    "answer": "Barbara Lee"
+    "answer": "Lateefah Simon"
   },
   {
     "question": "Who does a U.S. Senator represent?",
@@ -160,17 +160,16 @@
   {
     "question": "What is the name of the President of the United States now?",
     "answers": [
-      "Joseph R. Biden, Jr.",
-      "Joe Biden",
-      "Biden"
+      "Donald J. Trump",
+      "Donald Trump",
+      "Trump"
     ]
   },
   {
     "question": "What is the name of the Vice President of the United States now?",
     "answers": [
-      "Kamala D. Harris",
-      "Kamala Harris",
-      "Harris"
+      "JD Vance",
+      "Vance"
     ]
   },
   {
@@ -275,11 +274,15 @@
   },
   {
     "question": "What is the political party of the President now?",
-    "answer": "Democratic"
+    "answer": "Republican"
   },
   {
     "question": "What is the name of the Speaker of the House of Representatives now?",
-    "answer": "Nancy Pelosi"
+    "answers": [
+      "Mike Johnson",
+      "Johnson",
+      "James Michael Johnson"
+    ]
   },
   {
     "question": "There are four amendments to the Constitution about who can vote. Describe one of them.",
